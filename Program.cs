@@ -17,10 +17,29 @@ namespace NEWJurasicPark
         public string EnclosureNumber { get; set; }
         //  EnclosureNumber - String - the number of the pen the dinosaur is in
     }
-    class Program
+
+    static void DisplayGreeting()
     {
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine("Welcome to Jurassic Park Zoo");
+        Console.WriteLine();
+        Console.WriteLine();
+    }
+    class Program
+
+
+    {
+        static string PromptForDescription(string propertiesDescription)
+        {
+            Console.Write(propertiesDescription);
+            var userInput = Console.ReadLine();
+            return userInput;
+        }
+
         static void Main(string[] args)
         {
+            DisplayGreeting();
 
 
 
@@ -29,6 +48,8 @@ namespace NEWJurasicPark
 
 
             //  Keep track of your dinosaurs in a List<Dinosaur>.
+            var dinosaurs = new List<Dino>();
+
             //  When the console application runs, it should let the user choose one of the following actions:
 
             //  View
