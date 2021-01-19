@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace NEWJurasicPark
 {
@@ -21,8 +22,12 @@ namespace NEWJurasicPark
         {
             var dinoDescription = ($"The {Name}, as of {Date}, lives in {EnclosureNumber}. With a {DietType} diet, this dinosaur weighs in at {Weight} whopping pounds!");
             return dinoDescription;
+
+            //  Add a method Description to your class to 
         }
-        //  Add a method Description to your class to 
+
+        Console.WriteLine(dinoDescription);
+
         // print out a description of the dinosaur to include all the properties. Create an output format of your choosing. Feel free to be creative.
     }
 
@@ -50,9 +55,14 @@ namespace NEWJurasicPark
         {
             DisplayMessage("Welcome to Jurassic Park Zoo");
 
+            var dinosaurs = new List<Dino>(){
+              new Dino()
+              {
 
+              }
+            };
             //  Keep track of your dinosaurs in a List<Dinosaur>.
-            // var dinosaurs = new List<Dino>();
+
 
             //  When the console application runs, it should let the user choose one of the following actions:
 
