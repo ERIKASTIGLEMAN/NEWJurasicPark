@@ -23,10 +23,10 @@ namespace NEWJurasicPark
             var dinoDescription = ($"The {Name}, as of {Date}, lives in {EnclosureNumber}. With a {DietType} diet, this dinosaur weighs in at {Weight} whopping pounds!");
             return dinoDescription;
 
-            //  Add a method Description to your class to 
         }
+        //  Add a method Description to your class to 
 
-        Console.WriteLine(dinoDescription);
+        // Console.WriteLine(dinoDescription);
 
         // print out a description of the dinosaur to include all the properties. Create an output format of your choosing. Feel free to be creative.
     }
@@ -55,7 +55,8 @@ namespace NEWJurasicPark
         {
             DisplayMessage("Welcome to Jurassic Park Zoo");
 
-            var dinosaurs = new List<Dino>(){
+            var dinosaurs = new List<Dino>()
+            {
               new Dino()
               {
 
@@ -65,11 +66,47 @@ namespace NEWJurasicPark
 
 
             //  When the console application runs, it should let the user choose one of the following actions:
+            // While the user hasn't chosen to QUIT
+            var chooseQuit = false;
 
+            while (chooseQuit == false)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Menu:");
+                Console.WriteLine("VIEW - Show all Dinosaurs");
+                Console.WriteLine("ADD - Add new Dinosaur");
+                Console.WriteLine("REMOVE - Take Dinosaur out");
+                Console.WriteLine("TRANSFER - Move Dinosaur's enclosure assignment");
+                Console.WriteLine("SUMMARY - Shows number of carnivores and herbivores");
+                Console.WriteLine("QUIT - Close Application");
+                Console.WriteLine();
+                Console.WriteLine("What would you like to see?");
+                var option = Console.ReadLine().ToUpper();
+
+                if (option == "QUIT")
+                {
+                    chooseQuit = true;
+                }
+            }
+            // CHECK YOUR WORK
+            // Console.WriteLine(option);
+
+
+            // Display Menu:
+            //  View
+            // Add
+            // Remove
+            // Transfer
+            // Summary
+            // Quit
+
+
+
+
+            // This command will let the user type in the information for a dinosaur and add it to the list. Prompt for the Name, Diet Type, Weight and Enclosure Number, but the WhenAcquired must be supplied by the code.
             //  View
             // This command will show the all the dinosaurs in the list, ordered by WhenAcquired. If there aren't any dinosaurs in the park then print out a message that there aren't any.
             //  Add
-            // This command will let the user type in the information for a dinosaur and add it to the list. Prompt for the Name, Diet Type, Weight and Enclosure Number, but the WhenAcquired must be supplied by the code.
             //  Remove
             // This command will prompt the user for a dinosaur name then find and delete the dinosaur with that name.
             //  Transfer
@@ -83,4 +120,4 @@ namespace NEWJurasicPark
             DisplayMessage("Thank you for visiting Jurassic Park Zoo! Goodbye!");
         }
     }
-}
+};
