@@ -16,39 +16,43 @@ namespace NEWJurasicPark
         //  Weight - Int - How heavy the dinosaur is in pounds.
         public string EnclosureNumber { get; set; }
         //  EnclosureNumber - String - the number of the pen the dinosaur is in
-    }
 
-    static void DisplayGreeting()
-    {
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.WriteLine("Welcome to Jurassic Park Zoo");
-        Console.WriteLine();
-        Console.WriteLine();
-    }
-    class Program
-
-
-    {
-        static string PromptForDescription(string propertiesDescription)
+        public String Description()
         {
-            Console.Write(propertiesDescription);
+            var dinoDescription = ($"The {Name}, as of {Date}, lives in {EnclosureNumber}. With a {DietType} diet, this dinosaur weighs in at {Weight} whopping pounds!");
+            return dinoDescription;
+        }
+        //  Add a method Description to your class to 
+        // print out a description of the dinosaur to include all the properties. Create an output format of your choosing. Feel free to be creative.
+    }
+
+
+
+    class Program
+    {
+        static void DisplayMessage(string message)
+        {
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine(message);
+            Console.WriteLine();
+            Console.WriteLine();
+        }
+
+        static string PromptForDescription(string dinoProperties)
+        {
+            Console.Write(dinoProperties);
             var userInput = Console.ReadLine();
             return userInput;
         }
 
         static void Main(string[] args)
         {
-            DisplayGreeting();
-
-
-
-            //  Add a method Description to your class to print out a description of the dinosaur to include all the properties. Create an output format of your choosing. Feel free to be creative.
-            var dinoDescription = ($"The {Name}, as of {Date}, lives in {EnclosureNumber}. With a {DietType} diet, this dinosaur weighs in at {Weight} whopping pounds!");
+            DisplayMessage("Welcome to Jurassic Park Zoo");
 
 
             //  Keep track of your dinosaurs in a List<Dinosaur>.
-            var dinosaurs = new List<Dino>();
+            // var dinosaurs = new List<Dino>();
 
             //  When the console application runs, it should let the user choose one of the following actions:
 
@@ -64,6 +68,9 @@ namespace NEWJurasicPark
             //  This command will display the number of carnivores and the number of herbivores.
             //  Quit
             //  This will stop the program
+
+
+            DisplayMessage("Thank you for visiting Jurassic Park Zoo! Goodbye!");
         }
     }
 }
