@@ -6,21 +6,27 @@ namespace NEWJurasicPark
     //       Create a class to represent your dinosaurs. The class should have the following properties
     class Dino
     {
-        //  Name - String
+
         public string Name { get; set; }
-        //  DietType - String - This will be "carnivore" or "herbivore"
+        //  Name - String
+
+
         public string DietType { get; set; }
+        //  DietType - String - This will be "carnivore" or "herbivore"
+
+        public DateTime WhenAcquired { get; set; }
         //  WhenAcquired - Date - This will default to the current time when the dinosaur is created
-        public DateTime Date { get; set; }
         // DateTime currentDateTime = DateTime.Now;
+
         public int Weight { get; set; }
         //  Weight - Int - How heavy the dinosaur is in pounds.
+
         public string EnclosureNumber { get; set; }
         //  EnclosureNumber - String - the number of the pen the dinosaur is in
 
         public String Description()
         {
-            var dinoDescription = ($"The {Name}, as of {Date}, lives in {EnclosureNumber}. With a {DietType} diet, this dinosaur weighs in at {Weight} whopping pounds!");
+            var dinoDescription = ($"The {Name}, as of {WhenAcquired}, lives in {EnclosureNumber}. With a {DietType} diet, this dinosaur weighs in at {Weight} whopping pounds!");
             return dinoDescription;
 
         }
@@ -59,13 +65,22 @@ namespace NEWJurasicPark
             {
               new Dino()
               {
+                  Name = "Brachio",
+                  DietType = "Herb",
+                  WhenAcquired = "",
+
 
               }
             };
             //  Keep track of your dinosaurs in a List<Dinosaur>.
 
 
+
+
+
+
             //  When the console application runs, it should let the user choose one of the following actions:
+
             // While the user hasn't chosen to QUIT
             var chooseQuit = false;
 
@@ -83,6 +98,31 @@ namespace NEWJurasicPark
                 Console.WriteLine("What would you like to see?");
                 var option = Console.ReadLine().ToUpper();
 
+                if (option == "VIEW")
+                {
+
+                }
+
+                if (option == "ADD")
+                {
+
+                }
+
+                if (option == "Remove")
+                {
+
+                }
+
+                if (option == "TRANSFER")
+                {
+
+                }
+
+                if (option == "SUMMARY")
+                {
+
+                }
+
                 if (option == "QUIT")
                 {
                     chooseQuit = true;
@@ -93,28 +133,23 @@ namespace NEWJurasicPark
 
 
             // Display Menu:
-            //  View
-            // Add
-            // Remove
-            // Transfer
-            // Summary
-            // Quit
+            //  View  -  show the all dinosaurs in the list, 
+            //       ordered by WhenAcquired Refer back to dateTime. 
+            //       NO dinosaurs in the park then print out a message  THERE AREN'T ANY
+
+            // Add  -  Prompt for the Name, Diet Type, Weight and Enclosure Number, but the WhenAcquired must be supplied by the code.
+
+            // Remove  -  prompt the user for a dinosaur name then find and delete the dinosaur with that name.
+
+            // Transfer  -  prompt the user for a dinosaur name and a new EnclosureNumber and update that dino's information.
+            // Summary  -  display the number of carnivores and the number of herbivores.
+            // Quit  -  End Program
 
 
 
 
-            // This command will let the user type in the information for a dinosaur and add it to the list. Prompt for the Name, Diet Type, Weight and Enclosure Number, but the WhenAcquired must be supplied by the code.
-            //  View
-            // This command will show the all the dinosaurs in the list, ordered by WhenAcquired. If there aren't any dinosaurs in the park then print out a message that there aren't any.
-            //  Add
-            //  Remove
-            // This command will prompt the user for a dinosaur name then find and delete the dinosaur with that name.
-            //  Transfer
-            // This command will prompt the user for a dinosaur name and a new EnclosureNumber and update that dino's information.
-            //  Summary
-            //  This command will display the number of carnivores and the number of herbivores.
-            //  Quit
-            //  This will stop the program
+
+
 
 
             DisplayMessage("Thank you for visiting Jurassic Park Zoo! Goodbye!");
