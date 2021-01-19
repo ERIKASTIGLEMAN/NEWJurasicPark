@@ -66,11 +66,27 @@ namespace NEWJurasicPark
               new Dino()
               {
                   Name = "Brachio",
-                  DietType = "Herb",
-                  WhenAcquired = "",
-
-
-              }
+                  DietType = "Herbivore",
+                  WhenAcquired = DateTime.Now,
+                  Weight = 5000,
+                  EnclosureNumber = "1H",
+              },
+               new Dino()
+              {
+                  Name = "T-Rex",
+                  DietType = "Carnivore",
+                  WhenAcquired = DateTime.Now,
+                  Weight = 8000,
+                  EnclosureNumber = "2C",
+              },
+               new Dino()
+              {
+                  Name = "Triceratops",
+                  DietType = "Herbivore",
+                  WhenAcquired = DateTime.Now,
+                  Weight = 4000,
+                  EnclosureNumber = "1A",
+              },
             };
             //  Keep track of your dinosaurs in a List<Dinosaur>.
 
