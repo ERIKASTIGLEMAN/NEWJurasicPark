@@ -42,6 +42,32 @@ namespace NEWJurasicPark
 
     class Program
     {
+        static string PromptForString(string prompt)
+        {
+            Console.Write(prompt);
+            var userInput = Console.ReadLine();
+            return userInput;
+        }
+
+        static int PromptForInteger(string prompt)
+        {
+            Console.Write(prompt);
+            var userInput = Console.ReadLine();
+            var userInputAsNumber = int.Parse(userInput);
+            return userInputAsNumber;
+        }
+        static Dinosaurs PromptFindDinosaur(List<Dino> listOfSearchedDino)
+        {
+            var dinoName = PromptForString("What is the Name of the Dinosaur you want to locate? ");
+            var dinoFound = listOfSearchedDino.Find(dinosaurs => dinosaurs.Name == dinoName);
+            return dinoFound;
+        }
+        static string PromptForDescription(string dinoProperties)
+        {
+            Console.Write(dinoProperties);
+            var userInput = Console.ReadLine();
+            return userInput;
+        }
         static void DisplayMessage(string message)
         {
             Console.WriteLine();
@@ -50,13 +76,6 @@ namespace NEWJurasicPark
             Console.WriteLine();
             Console.WriteLine();
         }
-        static string PromptForDescription(string dinoProperties)
-        {
-            Console.Write(dinoProperties);
-            var userInput = Console.ReadLine();
-            return userInput;
-        }
-
         static void Main(string[] args)
         {
             DisplayMessage("Welcome to Jurassic Park Zoo");
@@ -88,16 +107,7 @@ namespace NEWJurasicPark
                   EnclosureNumber = "1A",
               },
             };
-            //  Keep track of your dinosaurs in a List<Dinosaur>.
-
-
-
-
-
-
-            //  When the console application runs, it should let the user choose one of the following actions:
-
-            // While the user hasn't chosen to QUIT
+            
             var chooseQuit = false;
 
             while (chooseQuit == false)
@@ -115,7 +125,7 @@ namespace NEWJurasicPark
                 var option = Console.ReadLine().ToUpper();
 
                 if (option == "VIEW")
-                {var dinosaursInOrder = dinosaurs.OrderBy(dinosaur => dinosaur.WhenAcquired);
+                {var dinosaursInOrder = dinosaurs.OrderBy(dinosaurs => dinosaurs.WhenAcquired);
                     foreach (var dinosaur in dinosaursInOrder)
                     {
                         Console.WriteLine($"{dinoDescription}");
@@ -123,29 +133,72 @@ namespace NEWJurasicPark
 
                     if (dinosaurs.Count == 0)
                     {
-                        Console.WriteLine("We do not have any dinosaurs in our park yet");
+                        Console.WriteLine("We do not have any dinosaurs in our park at this time");
+                    }
+
+                }
+                 if (option == "VIEW BY DATE")
+                {
+                    var dateSearched = DateTime.Parse(PromptForString("What date are you interested in searching? "));
+                    var searchedDate = dinosaurs.Where(dinosaurs => dinosaurs.WhenAcquired >= dateSearched);
+                    foreach (var dinosaur in searchedDate)
+                    {
+                        Console.WriteLine($"{dinosaur.Name} was received on {dateSearched} or after.");
                     }
 
                 }
 
+                if (option == "VIEW BY ENCLOSURE")
+                {
+                    var searchedEnclosureNumber = PromptForInteger("What enclosure number would you like to search for in out list? ");
+                    var dinoFound = dinosaurs.Where(dinosaurs => dinosaurs.EnclosureNumber == searchedEnclosureNumber);
+                    foreach (var dinosaur in dinoFound)
+                    {
+                        Console.WriteLine($"These Dinosaur-s {dinosaur.Name} were found in enclosure number {searchedEnclosureNumber}");
+                    }
+                }
+
                 if (option == "ADD")
                 {
+                    var newDinoName = PromptForString("New Dinosaur's name?");
+                    var newDinoDietType = PromptForString("New Dinosaur's Diet?");
+                    var newDinoWeight = PromptForInteger("New Dinosaur's weight?");
+                    var newDinoEnclosureNumber = PromptForInteger("New Dinosaur's enclosure number? ");
 
+                    var newDino = new Dino()
+                    {
+                        Name = newDinoName,
+                        DietType = newDinoDietType,
+                        Weight = newDinoWeight,
+                        EnclosureNumber = newDinoEnclosureNumber,
+                        WhenAcquired = DateTime.Today,
+                    };
+                    dinosaurs.Add(newDino);
                 }
 
                 if (option == "Remove")
                 {
-
+                    var dinoFound = PromptFindDinosaur(dinosaurs);
+                    dinosaurs.Remove(dinoFound);
                 }
 
                 if (option == "TRANSFER")
                 {
+                    var dinoFound = PromptFindDinosaur(dinosaurs);
+                    Console.Write($"Transfer {dinoFound.Name} today? What number enclosure would you like to transfer him/her to? ");
 
+                    var newEnclosureNumber = int.Parse(Console.ReadLine());
+                    dinoFound.EnclosureNumber = newEnclosureNumber;
+                    Console.WriteLine($"{dinoFound.Name} now lives in {dinoFound.EnclosureNumber}");
                 }
 
                 if (option == "SUMMARY")
                 {
+                     var numberOfCarnivores = dinosaurs.Count(dinosaurs => dinosaurs.DietType == "Carnivore");
+                    Console.WriteLine($"Our total of Carnivores in the Park today is {numberOfCarnivores}");
 
+                    var numberOfHerbivores = dinosaurs.Count(dinosaurs => dinosaurs.DietType == "Herbivore");
+                    Console.WriteLine($"The total number of  Herbivores in the Park today is {numberOfHerbivores}");
                 }
 
                 if (option == "QUIT")
@@ -153,30 +206,6 @@ namespace NEWJurasicPark
                     chooseQuit = true;
                 }
             }
-            // CHECK YOUR WORK
-            // Console.WriteLine(option);
-
-
-            // Display Menu:
-            //  View  -  show the all dinosaurs in the list, 
-            //       ordered by WhenAcquired Refer back to dateTime. 
-            //       NO dinosaurs in the park then print out a message  THERE AREN'T ANY
-
-            // Add  -  Prompt for the Name, Diet Type, Weight and Enclosure Number, but the WhenAcquired must be supplied by the code.
-
-            // Remove  -  prompt the user for a dinosaur name then find and delete the dinosaur with that name.
-
-            // Transfer  -  prompt the user for a dinosaur name and a new EnclosureNumber and update that dino's information.
-            // Summary  -  display the number of carnivores and the number of herbivores.
-            // Quit  -  End Program
-
-
-
-
-
-
-
-
             DisplayMessage("Thank you for visiting Jurassic Park Zoo! Goodbye!");
         }
     }
