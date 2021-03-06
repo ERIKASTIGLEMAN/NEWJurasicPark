@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace NEWJurasicPark
 {
@@ -49,7 +50,6 @@ namespace NEWJurasicPark
             Console.WriteLine();
             Console.WriteLine();
         }
-
         static string PromptForDescription(string dinoProperties)
         {
             Console.Write(dinoProperties);
@@ -115,7 +115,16 @@ namespace NEWJurasicPark
                 var option = Console.ReadLine().ToUpper();
 
                 if (option == "VIEW")
-                {
+                {var dinosaursInOrder = dinosaurs.OrderBy(dinosaur => dinosaur.WhenAcquired);
+                    foreach (var dinosaur in dinosaursInOrder)
+                    {
+                        Console.WriteLine($"{dinoDescription}");
+                    }
+
+                    if (dinosaurs.Count == 0)
+                    {
+                        Console.WriteLine("We do not have any dinosaurs in our park yet");
+                    }
 
                 }
 
