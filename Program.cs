@@ -25,7 +25,7 @@ namespace NEWJurasicPark
         public string EnclosureNumber { get; set; }
         //  EnclosureNumber - String - the number of the pen the dinosaur is in
 
-        public String Description()
+        public string Description()
         {
             var dinoDescription = ($"The {Name}, as of {WhenAcquired}, lives in {EnclosureNumber}. With a {DietType} diet, this dinosaur weighs in at {Weight} whopping pounds!");
             return dinoDescription;
@@ -56,7 +56,7 @@ namespace NEWJurasicPark
             var userInputAsNumber = int.Parse(userInput);
             return userInputAsNumber;
         }
-        static Dinosaurs PromptFindDinosaur(List<Dino> listOfSearchedDino)
+        static Dino PromptFindDinosaur(List<Dino> listOfSearchedDino)
         {
             var dinoName = PromptForString("What is the Name of the Dinosaur you want to locate? ");
             var dinoFound = listOfSearchedDino.Find(dinosaurs => dinosaurs.Name == dinoName);
@@ -128,7 +128,7 @@ namespace NEWJurasicPark
                 {var dinosaursInOrder = dinosaurs.OrderBy(dinosaurs => dinosaurs.WhenAcquired);
                     foreach (var dinosaur in dinosaursInOrder)
                     {
-                        Console.WriteLine($"{dinoDescription}");
+                        Console.WriteLine($"{dinosaur.Description()}");
                     }
 
                     if (dinosaurs.Count == 0)
@@ -150,7 +150,7 @@ namespace NEWJurasicPark
 
                 if (option == "VIEW BY ENCLOSURE")
                 {
-                    var searchedEnclosureNumber = PromptForInteger("What enclosure number would you like to search for in out list? ");
+                    var searchedEnclosureNumber = PromptForString("What enclosure number would you like to search for in out list? ");
                     var dinoFound = dinosaurs.Where(dinosaurs => dinosaurs.EnclosureNumber == searchedEnclosureNumber);
                     foreach (var dinosaur in dinoFound)
                     {
@@ -163,7 +163,7 @@ namespace NEWJurasicPark
                     var newDinoName = PromptForString("New Dinosaur's name?");
                     var newDinoDietType = PromptForString("New Dinosaur's Diet?");
                     var newDinoWeight = PromptForInteger("New Dinosaur's weight?");
-                    var newDinoEnclosureNumber = PromptForInteger("New Dinosaur's enclosure number? ");
+                    var newDinoEnclosureNumber = PromptForString("New Dinosaur's enclosure number? ");
 
                     var newDino = new Dino()
                     {
@@ -171,7 +171,7 @@ namespace NEWJurasicPark
                         DietType = newDinoDietType,
                         Weight = newDinoWeight,
                         EnclosureNumber = newDinoEnclosureNumber,
-                        WhenAcquired = DateTime.Today,
+                        WhenAcquired = DateTime.Now,
                     };
                     dinosaurs.Add(newDino);
                 }
@@ -187,7 +187,7 @@ namespace NEWJurasicPark
                     var dinoFound = PromptFindDinosaur(dinosaurs);
                     Console.Write($"Transfer {dinoFound.Name} today? What number enclosure would you like to transfer him/her to? ");
 
-                    var newEnclosureNumber = int.Parse(Console.ReadLine());
+                    var newEnclosureNumber = Console.ReadLine();
                     dinoFound.EnclosureNumber = newEnclosureNumber;
                     Console.WriteLine($"{dinoFound.Name} now lives in {dinoFound.EnclosureNumber}");
                 }
